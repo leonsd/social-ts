@@ -1,0 +1,65 @@
+{
+  "name": "express-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "license": "MIT",
+  "scripts": {
+    "compile": "tsc",
+    "configure": "cp .env.example .env",
+    "dev": "nodemon",
+    "lint": "tslint -c ./tslint.json -p tsconfig.json --fix",
+    "pretest": "cross-env NODE_ENV=test yarn migration:run",
+    "posttest": "cross-env NODE_ENV=test yarn migration:rollback",
+    "start": "ts-node src/index.ts",
+    "test": "jest",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:create": "yarn typeorm migration:create",
+    "migration:run": "yarn typeorm migration:run",
+    "migration:rollback": "yarn typeorm migration:revert",
+    "entity:create": "yarn typeorm migration:create"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.5",
+    "@types/supertest": "^2.0.8",
+    "commitizen": "^4.0.3",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "3.1.0",
+    "husky": "^4.2.3",
+    "jest": "^25.2.4",
+    "nodemon": "^2.0.2",
+    "sqlite": "^3.0.6",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.2.1",
+    "ts-node": "8.8.1",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^6.1.0",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.2.24"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

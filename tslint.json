@@ -1,0 +1,41 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [
+      true,
+      "single",
+      "avoind-escape"
+    ],
+    "no-console": {
+      "severity": "error",
+      "options": [
+        "log",
+        "debug",
+        "info",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
+    },
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "arguments": "never"
+        }
+      }
+    ],
+    "semicolon": true,
+    "max-line-length": [
+      true,
+      {
+        "limit": 80
+      }
+    ]
+  },
+  "rulesDirectory": []
+}
