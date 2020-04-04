@@ -11,6 +11,7 @@ export default class UserController {
     this.store = this.store.bind(this);
     this.update = this.update.bind(this);
     this.destroy = this.destroy.bind(this);
+    this.confirmation = this.confirmation.bind(this);
   }
 
   async all(req: Request, res: Response) {
@@ -47,5 +48,21 @@ export default class UserController {
     await this.userRepository.remove(userToRemove);
 
     return res.json();
+  }
+
+  async confirmation(req: Request, res: Response) {
+    const { params, query } = req;
+    const userToConfirm = await this.userRepository.findOneOrFail({
+      where: {
+        id: params.id,
+        token: query.token,
+        status: false,
+      },
+      select: ['id']
+    });
+
+    await this.userRepository.update(userToConfirm.id, { status: true });
+
+    return res.json({ message: 'confirmed' });
   }
 }

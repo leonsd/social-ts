@@ -26,6 +26,18 @@ export class User1585423053754 implements MigrationInterface {
         isNullable: false,
       },
       {
+        name: 'token',
+        type: 'varchar',
+        length: '100',
+        isNullable: true,
+      },
+      {
+        name: 'status',
+        type: 'boolean',
+        isNullable: false,
+        default: false,
+      },
+      {
         name: 'created_at',
         type: 'datetime',
         isNullable: false,

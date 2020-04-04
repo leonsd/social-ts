@@ -11,5 +11,6 @@ router.get('/:id', asyncWrapper(userController.show));
 router.post('/', asyncWrapper(userController.store));
 router.put('/:id', asyncWrapper(userController.update));
 router.delete('/:id', asyncWrapper(userController.destroy));
+router.get('/:id/confirmation', asyncWrapper(userController.confirmation));
 
 export default router;
